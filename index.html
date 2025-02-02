@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Registro de Ventas</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Registro de Ventas por Mesas</h1>
+
+        <!-- Selección de mesa -->
+        <div class="mesas">
+            <h2>Seleccionar Mesa</h2>
+            <select id="seleccionar-mesa">
+                <option value="">Seleccionar mesa</option>
+                <!-- Se agregan mesas del 1 al 15 -->
+            </select>
+        </div>
+
+        <!-- Productos para seleccionar -->
+        <div class="productos">
+            <h2>Productos</h2>
+            <div id="lista-productos">
+                <!-- Productos agregados por JavaScript -->
+            </div>
+        </div>
+
+        <!-- Total de ventas por mesa -->
+        <div class="total">
+            <h2>Total de la Mesa: <span id="mesa-seleccionada"></span></h2>
+            <p>Total: C$<span id="total"></span></p>
+        </div>
+
+        <button id="guardar-venta" onclick="guardarVenta()">Guardar Venta</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
