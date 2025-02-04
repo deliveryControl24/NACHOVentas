@@ -1,41 +1,259 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Registro de Ventas</title>
-    <link rel="stylesheet" href="estilos.css">
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .table-section {
+            margin: 20px 0;
+        }
+        .menu-item {
+            margin: 5px 0;
+        }
+        .mesa {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #444;
+            border-radius: 5px;
+        }
+        .total {
+            font-weight: bold;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #555;
+            color: white;
+        }
+        button:hover {
+            background-color: #666;
+        }
+        .button-danger {
+            background-color: red;
+        }
+        .button-danger:hover {
+            background-color: darkred;
+        }
+        .clear-button {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #f39c12;
+        }
+        .clear-button:hover {
+            background-color: #e67e22;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Registro de Ventas por Mesas</h1>
 
-        <!-- Selección de mesa -->
-        <div class="mesas">
-            <h2>Seleccionar Mesa</h2>
-            <select id="seleccionar-mesa">
-                <option value="">Seleccionar mesa</option>
-                <!-- Se agregan mesas del 1 al 15 -->
-            </select>
-        </div>
+<h1>Registro de Ventas</h1>
 
-        <!-- Productos para seleccionar -->
-        <div class="productos">
-            <h2>Productos</h2>
-            <div id="lista-productos">
-                <!-- Productos agregados por JavaScript -->
-            </div>
-        </div>
+<label for="mesa-select">Selecciona una mesa:</label>
+<select id="mesa-select">
+    <option value="">--Seleccionar mesa--</option>
+    <script>
+        for (let i = 1; i <= 20; i++) {
+            document.write(`<option value="${i}">Mesa ${i}</option>`);
+        }
+    </script>
+</select>
 
-        <!-- Total de ventas por mesa -->
-        <div class="total">
-            <h2>Total de la Mesa: <span id="mesa-seleccionada"></span></h2>
-            <p>Total: C$<span id="total"></span></p>
-        </div>
-
-        <button id="guardar-venta" onclick="guardarVenta()">Guardar Venta</button>
+<div class="menu">
+    <h2>Menú Completo</h2>
+    <div class="asados">
+        <h3>Asados</h3>
+        <div class="menu-item">Costilla de cerdo: C$300 <button onclick="addItem('Costilla de cerdo', 300)">Agregar</button></div>
+        <div class="menu-item">Pollo asado: C$220 <button onclick="addItem('Pollo asado', 220)">Agregar</button></div>
+        <div class="menu-item">Cerdo asado: C$220 <button onclick="addItem('Cerdo asado', 220)">Agregar</button></div>
+        <div class="menu-item">Corazón asado: C$220 <button onclick="addItem('Corazón asado', 220)">Agregar</button></div>
+        <div class="menu-item">Gonces asados: C$450 <button onclick="addItem('Gonces asados', 450)">Agregar</button></div>
+        <div class="menu-item">Lomo de costilla (asado): C$470 <button onclick="addItem('Lomo de costilla', 470)">Agregar</button></div>
     </div>
+    <div class="mariscos">
+        <h3>Mariscos</h3>
+        <div class="menu-item">Camarones a la plancha: C$370 <button onclick="addItem('Camarones a la plancha', 370)">Agregar</button></div>
+        <div class="menu-item">Camarones empanizados: C$370 <button onclick="addItem('Camarones empanizados', 370)">Agregar</button></div>
+        <div class="menu-item">Camarones al ajillo: C$370 <button onclick="addItem('Camarones al ajillo', 370)">Agregar</button></div>
+        <div class="menu-item">Corvina a la plancha: C$370 <button onclick="addItem('Corvina a la plancha', 370)">Agregar</button></div>
+    </div>
+    <div class="pollo">
+        <h3>Pollo</h3>
+        <div class="menu-item">Pollo a la plancha: C$350 <button onclick="addItem('Pollo a la plancha', 350)">Agregar</button></div>
+        <div class="menu-item">Pollo al vino: C$350 <button onclick="addItem('Pollo al vino', 350)">Agregar</button></div>
+        <div class="menu-item">Pollo jalapeño: C$350 <button onclick="addItem('Pollo jalapeño', 350)">Agregar</button></div>
+        <div class="menu-item">Pollo a la plancha (T/Boca): C$400 <button onclick="addItem('Pollo a la plancha (T/Boca)', 400)">Agregar</button></div>
+    </div>
+    <div class="extras">
+        <h3>Extras</h3>
+        <div class="menu-item">Arroz o gallo pinto: C$50 <button onclick="addItem('Arroz o gallo pinto', 50)">Agregar</button></div>
+        <div class="menu-item">Papas: C$200 <button onclick="addItem('Papas', 200)">Agregar</button></div>
+        <div class="menu-item">Ensalada: C$40 <button onclick="addItem('Ensalada', 40)">Agregar</button></div>
+        <div class="menu-item">Tostones: C$50 <button onclick="addItem('Tostones', 50)">Agregar</button></div>
+        <div class="menu-item">Jalapeño: C$40 <button onclick="addItem('Jalapeño', 40)">Agregar</button></div>
+        <div class="menu-item">Queso: C$50 <button onclick="addItem('Queso', 50)">Agregar</button></div>
+    </div>
+    <div class="cervezas">
+        <h3>Cervezas y Licores</h3>
+        <div class="menu-item">Toña <button onclick="addDrink('Toña')">Agregar</button></div>
+        <div class="menu-item">Toña Light <button onclick="addDrink('Toña Light')">Agregar</button></div>
+        <div class="menu-item">Victoria Clásica <button onclick="addDrink('Victoria Clásica')">Agregar</button></div>
+        <div class="menu-item">Victoria Frost <button onclick="addDrink('Victoria Frost')">Agregar</button></div>
+        <div class="menu-item">Sol <button onclick="addDrink('Sol')">Agregar</button></div>
+        <div class="menu-item">Heineken <button onclick="addDrink('Heineken')">Agregar</button></div>
+        <div class="menu-item">Bamboo <button onclick="addDrink('Bamboo')">Agregar</button></div>
+        <div class="menu-item">Adán y Eva <button onclick="addDrink('Adán y Eva')">Agregar</button></div>
+        <div class="menu-item">Bliss <button onclick="addDrink('Bliss')">Agregar</button></div>
+        <div class="menu-item">Hard Seltzer Spark <button onclick="addDrink('Hard Seltzer Spark')">Agregar</button></div>
+        <div class="menu-item">Smirnoff <button onclick="addDrink('Smirnoff')">Agregar</button></div>
+        <div class="menu-item">1/2 botella de ron nacional Flor de Caña <button onclick="addDrink('Ron nacional Flor de Caña')">Agregar</button></div>
+        <div class="menu-item">1/4 botella de ron nacional Flor de Caña <button onclick="addDrink('Ron nacional Flor de Caña')">Agregar</button></div>
+        <div class="menu-item">Tequila José Cuervo Especial <button onclick="addDrink('Tequila José Cuervo Especial')">Agregar</button></div>
+        <div class="menu-item">Whisky Johnnie Walker Red <button onclick="addDrink('Whisky Johnnie Walker Red')">Agregar</button></div>
+        <div class="menu-item">Whisky Johnnie Walker Black <button onclick="addDrink('Whisky Johnnie Walker Black')">Agregar</button></div>
+    </div>
+    <div class="bebidas-sin-alcohol">
+        <h3>Bebidas Sin Alcohol</h3>
+        <div class="menu-item">Limonada: C$40 <button onclick="addItem('Limonada', 40)">Agregar</button></div>
+        <div class="menu-item">Gaseosa: C$30 <button onclick="addItem('Gaseosa', 30)">Agregar</button></div>
+        <div class="menu-item">Té de limón: C$40 <button onclick="addItem('Té de limón', 40)">Agregar</button></div>
+        <div class="menu-item">Jugo de naranja: C$40 <button onclick="addItem('Jugo de naranja', 40)">Agregar</button></div>
+        <div class="menu-item">Agua embotellada: C$40 <button onclick="addItem('Agua embotellada', 40)">Agregar</button></div>
+    </div>
+</div>
 
-    <script src="script.js"></script>
+<div class="table-section">
+    <h2>Consumo por Mesa</h2>
+    <div id="mesas-container"></div>
+</div>
+
+<div>
+    <button onclick="calculateTotal()">Calcular Total</button>
+    <button class="button-danger" onclick="clearDay()">Limpiar el Día</button>
+</div>
+
+<script>
+    const mesas = {};
+
+    function addItem(producto, precio) {
+        const mesaSelect = document.getElementById("mesa-select");
+        const mesa = mesaSelect.value;
+
+        if (!mesa) {
+            alert("Por favor, selecciona una mesa.");
+            return;
+        }
+
+        if (!mesas[mesa]) {
+            mesas[mesa] = [];
+        }
+
+        mesas[mesa].push({ producto, precio });
+        displayMesa();
+        localStorage.setItem('mesas', JSON.stringify(mesas));
+    }
+
+    function addDrink(drink) {
+        const mesaSelect = document.getElementById("mesa-select");
+        const mesa = mesaSelect.value;
+
+        if (!mesa) {
+            alert("Por favor, selecciona una mesa.");
+            return;
+        }
+
+        if (!mesas[mesa]) {
+            mesas[mesa] = [];
+        }
+
+        const existingDrink = mesas[mesa].find(item => item.producto === drink);
+
+        if (existingDrink) {
+            existingDrink.cantidad += 1;
+        } else {
+            mesas[mesa].push({ producto: drink, cantidad: 1 });
+        }
+
+        displayMesa();
+        localStorage.setItem('mesas', JSON.stringify(mesas));
+    }
+
+    function displayMesa() {
+        const mesasContainer = document.getElementById("mesas-container");
+        mesasContainer.innerHTML = '';
+
+        for (const mesaKey in mesas) {
+            const items = mesas[mesaKey];
+            const mesaDiv = document.createElement("div");
+            mesaDiv.classList.add("mesa");
+            mesaDiv.innerHTML = `<h3>Mesa ${mesaKey}</h3>`;
+            items.forEach(item => {
+                if (item.precio) {
+                    mesaDiv.innerHTML += `<div>${item.producto}: C$${item.precio}</div>`;
+                } else {
+                    mesaDiv.innerHTML += `<div>${item.producto}: ${item.cantidad} unidad(es)</div>`;
+                }
+            });
+            const total = items.reduce((sum, item) => sum + (item.precio ? item.precio : 0), 0);
+            mesaDiv.innerHTML += `<div class="total">Total Mesa ${mesaKey}: C$${total}</div>`;
+            mesaDiv.innerHTML += `<button class="clear-button" onclick="clearTable('${mesaKey}')">Limpiar Mesa ${mesaKey}</button>`;
+            mesasContainer.appendChild(mesaDiv);
+        }
+    }
+
+    function clearTable(mesa) {
+        if (confirm(`¿Estás seguro de que quieres limpiar la Mesa ${mesa}?`)) {
+            delete mesas[mesa];
+            localStorage.setItem('mesas', JSON.stringify(mesas));
+            displayMesa();
+            alert(`La Mesa ${mesa} ha sido limpiada.`);
+        }
+    }
+
+    function calculateTotal() {
+        let grandTotal = 0;
+
+        for (const mesaKey in mesas) {
+            const items = mesas[mesaKey];
+            const total = items.reduce((sum, item) => sum + (item.precio ? item.precio : 0), 0);
+            grandTotal += total;
+        }
+
+        alert(`Total general para todas las mesas: C$${grandTotal}`);
+    }
+
+    function clearDay() {
+        if (confirm("¿Estás seguro de que quieres limpiar el día?")) {
+            localStorage.removeItem('mesas');
+            for (const mesa in mesas) {
+                mesas[mesa] = [];
+            }
+            document.getElementById("mesas-container").innerHTML = '';
+            alert("El día ha sido limpiado.");
+        }
+    }
+
+    window.onload = function() {
+        const storedMesas = localStorage.getItem('mesas');
+        if (storedMesas) {
+            Object.assign(mesas, JSON.parse(storedMesas));
+            displayMesa();
+        }
+    };
+</script>
+
 </body>
 </html>
