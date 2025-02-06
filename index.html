@@ -11,12 +11,16 @@
             color: #fff;
             font-family: Arial, sans-serif;
             padding: 20px;
+            margin: 0;
         }
         h1 {
             text-align: center;
         }
         .table-section {
             margin: 20px 0;
+        }
+        .menu-category {
+            margin-bottom: 20px;
         }
         .menu-item {
             margin: 5px 0;
@@ -38,6 +42,7 @@
             border-radius: 5px;
             background-color: #555;
             color: white;
+            width: 100%;
         }
         button:hover {
             background-color: #666;
@@ -56,16 +61,26 @@
         .clear-button:hover {
             background-color: #e67e22;
         }
-        .update-price-button {
-            margin-top: 10px;
-            background-color: #2980b9;
-        }
-        .update-price-button:hover {
-            background-color: #3498db;
-        }
         .price-input {
             margin-left: 10px;
             width: 60px;
+        }
+        .whatsapp-button {
+            display: block;
+            background-color: #25D366;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+        }
+        @media (max-width: 600px) {
+            button {
+                width: auto;
+            }
         }
     </style>
 </head>
@@ -86,144 +101,87 @@
 <div class="menu">
     <h2>Menú Completo</h2>
 
-    <div class="asados">
+    <div class="menu-category">
         <h3>Asados</h3>
-        <div class="menu-item">Costilla de cerdo: C$<span class="price" id="price-costilla">300</span>
-            <button onclick="addItem('Costilla de cerdo', 'price-costilla')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-costilla', this.value)">
-        </div>
-        <div class="menu-item">Pollo asado: C$<span class="price" id="price-pollo-asado">220</span>
-            <button onclick="addItem('Pollo asado', 'price-pollo-asado')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-pollo-asado', this.value)">
-        </div>
-        <div class="menu-item">Cerdo asado: C$<span class="price" id="price-cerdo-asado">220</span>
-            <button onclick="addItem('Cerdo asado', 'price-cerdo-asado')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-cerdo-asado', this.value)">
-        </div>
-        <div class="menu-item">Corazón asado: C$<span class="price" id="price-corazon-asado">220</span>
-            <button onclick="addItem('Corazón asado', 'price-corazon-asado')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-corazon-asado', this.value)">
-        </div>
-        <div class="menu-item">Gonces asados: C$<span class="price" id="price-gonces-asados">450</span>
-            <button onclick="addItem('Gonces asados', 'price-gonces-asados')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-gonces-asados', this.value)">
-        </div>
-        <div class="menu-item">Lomo de costilla (asado): C$<span class="price" id="price-lomo-costilla">470</span>
-            <button onclick="addItem('Lomo de costilla', 'price-lomo-costilla')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-lomo-costilla', this.value)">
-        </div>
+        <select id="asado-select">
+            <option value="Costilla de cerdo">Costilla de cerdo: C$300</option>
+            <option value="Pollo asado">Pollo asado: C$220</option>
+            <option value="Cerdo asado">Cerdo asado: C$220</option>
+            <option value="Corazón asado">Corazón asado: C$220</option>
+            <option value="Gonces asados">Gonces asados: C$450</option>
+            <option value="Lomo de costilla">Lomo de costilla (asado): C$470</option>
+        </select>
+        <button onclick="addItem(document.getElementById('asado-select').value, 'asado')">Agregar Asado</button>
     </div>
     
-    <div class="mariscos">
+    <div class="menu-category">
         <h3>Mariscos</h3>
-        <div class="menu-item">Camarones a la plancha: C$<span class="price" id="price-camarones-plancha">370</span>
-            <button onclick="addItem('Camarones a la plancha', 'price-camarones-plancha')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-camarones-plancha', this.value)">
-        </div>
-        <div class="menu-item">Camarones empanizados: C$<span class="price" id="price-camarones-empanizados">370</span>
-            <button onclick="addItem('Camarones empanizados', 'price-camarones-empanizados')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-camarones-empanizados', this.value)">
-        </div>
-        <div class="menu-item">Camarones al ajillo: C$<span class="price" id="price-camarones-ajillo">370</span>
-            <button onclick="addItem('Camarones al ajillo', 'price-camarones-ajillo')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-camarones-ajillo', this.value)">
-        </div>
-        <div class="menu-item">Corvina a la plancha: C$<span class="price" id="price-corvina">370</span>
-            <button onclick="addItem('Corvina a la plancha', 'price-corvina')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-corvina', this.value)">
-        </div>
+        <select id="marisco-select">
+            <option value="Camarones a la plancha">Camarones a la plancha: C$370</option>
+            <option value="Camarones empanizados">Camarones empanizados: C$370</option>
+            <option value="Camarones al ajillo">Camarones al ajillo: C$370</option>
+            <option value="Corvina a la plancha">Corvina a la plancha: C$370</option>
+        </select>
+        <button onclick="addItem(document.getElementById('marisco-select').value, 'marisco')">Agregar Marisco</button>
     </div>
     
-    <div class="pollo">
+    <div class="menu-category">
         <h3>Pollo</h3>
-        <div class="menu-item">Pollo a la plancha: C$<span class="price" id="price-pollo-plancha">350</span>
-            <button onclick="addItem('Pollo a la plancha', 'price-pollo-plancha')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-pollo-plancha', this.value)">
-        </div>
-        <div class="menu-item">Pollo al vino: C$<span class="price" id="price-pollo-vino">350</span>
-            <button onclick="addItem('Pollo al vino', 'price-pollo-vino')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-pollo-vino', this.value)">
-        </div>
-        <div class="menu-item">Pollo jalapeño: C$<span class="price" id="price-pollo-jalapeno">350</span>
-            <button onclick="addItem('Pollo jalapeño', 'price-pollo-jalapeno')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-pollo-jalapeno', this.value)">
-        </div>
-        <div class="menu-item">Pollo a la plancha (T/Boca): C$<span class="price" id="price-pollo-tboca">400</span>
-            <button onclick="addItem('Pollo a la plancha (T/Boca)', 'price-pollo-tboca')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-pollo-tboca', this.value)">
-        </div>
+        <select id="pollo-select">
+            <option value="Pollo a la plancha">Pollo a la plancha: C$350</option>
+            <option value="Pollo al vino">Pollo al vino: C$350</option>
+            <option value="Pollo jalapeño">Pollo jalapeño: C$350</option>
+            <option value="Pollo a la plancha (T/Boca)">Pollo a la plancha (T/Boca): C$400</option>
+        </select>
+        <button onclick="addItem(document.getElementById('pollo-select').value, 'pollo')">Agregar Pollo</button>
     </div>
     
-    <div class="extras">
+    <div class="menu-category">
         <h3>Extras</h3>
-        <div class="menu-item">Arroz o gallo pinto: C$<span class="price" id="price-arroz">50</span>
-            <button onclick="addItem('Arroz o gallo pinto', 'price-arroz')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-arroz', this.value)">
-        </div>
-        <div class="menu-item">Papas: C$<span class="price" id="price-papas">200</span>
-            <button onclick="addItem('Papas', 'price-papas')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-papas', this.value)">
-        </div>
-        <div class="menu-item">Ensalada: C$<span class="price" id="price-ensalada">40</span>
-            <button onclick="addItem('Ensalada', 'price-ensalada')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-ensalada', this.value)">
-        </div>
-        <div class="menu-item">Tostones: C$<span class="price" id="price-tostones">50</span>
-            <button onclick="addItem('Tostones', 'price-tostones')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-tostones', this.value)">
-        </div>
-        <div class="menu-item">Jalapeño: C$<span class="price" id="price-jalapeno">40</span>
-            <button onclick="addItem('Jalapeño', 'price-jalapeno')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-jalapeno', this.value)">
-        </div>
-        <div class="menu-item">Queso: C$<span class="price" id="price-queso">50</span>
-            <button onclick="addItem('Queso', 'price-queso')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-queso', this.value)">
-        </div>
+        <select id="extras-select">
+            <option value="Arroz o gallo pinto">Arroz o gallo pinto: C$50</option>
+            <option value="Papas">Papas: C$200</option>
+            <option value="Ensalada">Ensalada: C$40</option>
+            <option value="Tostones">Tostones: C$50</option>
+            <option value="Jalapeño">Jalapeño: C$40</option>
+            <option value="Queso">Queso: C$50</option>
+        </select>
+        <button onclick="addItem(document.getElementById('extras-select').value, 'extras')">Agregar Extra</button>
     </div>
     
-    <div class="cervezas">
+    <div class="menu-category">
         <h3>Cervezas y Licores</h3>
-        <div class="menu-item">Toña <button onclick="addDrink('Toña')">Agregar</button></div>
-        <div class="menu-item">Toña Light <button onclick="addDrink('Toña Light')">Agregar</button></div>
-        <div class="menu-item">Victoria Clásica <button onclick="addDrink('Victoria Clásica')">Agregar</button></div>
-        <div class="menu-item">Victoria Frost <button onclick="addDrink('Victoria Frost')">Agregar</button></div>
-        <div class="menu-item">Sol <button onclick="addDrink('Sol')">Agregar</button></div>
-        <div class="menu-item">Heineken <button onclick="addDrink('Heineken')">Agregar</button></div>
-        <div class="menu-item">Bamboo <button onclick="addDrink('Bamboo')">Agregar</button></div>
-        <div class="menu-item">Adán y Eva <button onclick="addDrink('Adán y Eva')">Agregar</button></div>
-        <div class="menu-item">Bliss <button onclick="addDrink('Bliss')">Agregar</button></div>
-        <div class="menu-item">Hard Seltzer Spark <button onclick="addDrink('Hard Seltzer Spark')">Agregar</button></div>
-        <div class="menu-item">Smirnoff <button onclick="addDrink('Smirnoff')">Agregar</button></div>
-        <div class="menu-item">1/2 botella de ron nacional Flor de Caña <button onclick="addDrink('Ron nacional Flor de Caña')">Agregar</button></div>
-        <div class="menu-item">1/4 botella de ron nacional Flor de Caña <button onclick="addDrink('Ron nacional Flor de Caña')">Agregar</button></div>
-        <div class="menu-item">Tequila José Cuervo Especial <button onclick="addDrink('Tequila José Cuervo Especial')">Agregar</button></div>
-        <div class="menu-item">Whisky Johnnie Walker Red <button onclick="addDrink('Whisky Johnnie Walker Red')">Agregar</button></div>
-        <div class="menu-item">Whisky Johnnie Walker Black <button onclick="addDrink('Whisky Johnnie Walker Black')">Agregar</button></div>
+        <select id="cervezas-select">
+            <option value="Toña">Toña</option>
+            <option value="Toña Light">Toña Light</option>
+            <option value="Victoria Clásica">Victoria Clásica</option>
+            <option value="Victoria Frost">Victoria Frost</option>
+            <option value="Sol">Sol</option>
+            <option value="Heineken">Heineken</option>
+            <option value="Bamboo">Bamboo</option>
+            <option value="Adán y Eva">Adán y Eva</option>
+            <option value="Bliss">Bliss</option>
+            <option value="Hard Seltzer Spark">Hard Seltzer Spark</option>
+            <option value="Smirnoff">Smirnoff</option>
+            <option value="Ron nacional Flor de Caña (1/2 botella)">1/2 botella de ron nacional Flor de Caña</option>
+            <option value="Ron nacional Flor de Caña (1/4 botella)">1/4 botella de ron nacional Flor de Caña</option>
+            <option value="Tequila José Cuervo Especial">Tequila José Cuervo Especial</option>
+            <option value="Whisky Johnnie Walker Red">Whisky Johnnie Walker Red</option>
+            <option value="Whisky Johnnie Walker Black">Whisky Johnnie Walker Black</option>
+        </select>
+        <button onclick="addDrink(document.getElementById('cervezas-select').value)">Agregar Cerveza/Licores</button>
     </div>
     
-    <div class="bebidas-sin-alcohol">
+    <div class="menu-category">
         <h3>Bebidas Sin Alcohol</h3>
-        <div class="menu-item">Limonada: C$<span class="price" id="price-limonada">40</span>
-            <button onclick="addItem('Limonada', 'price-limonada')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-limonada', this.value)">
-        </div>
-        <div class="menu-item">Gaseosa: C$<span class="price" id="price-gaseosa">30</span>
-            <button onclick="addItem('Gaseosa', 'price-gaseosa')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-gaseosa', this.value)">
-        </div>
-        <div class="menu-item">Té de limón: C$<span class="price" id="price-te-limon">40</span>
-            <button onclick="addItem('Té de limón', 'price-te-limon')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-te-limon', this.value)">
-        </div>
-        <div class="menu-item">Jugo de naranja: C$<span class="price" id="price-jugo-naranja">40</span>
-            <button onclick="addItem('Jugo de naranja', 'price-jugo-naranja')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-jugo-naranja', this.value)">
-        </div>
-        <div class="menu-item">Agua embotellada: C$<span class="price" id="price-agua">40</span>
-            <button onclick="addItem('Agua embotellada', 'price-agua')">Agregar</button>
-            <input type="number" class="price-input" placeholder="Nuevo precio" onchange="updatePrice('price-agua', this.value)">
-        </div>
+        <select id="bebidas-select">
+            <option value="Limonada">Limonada: C$40</option>
+            <option value="Gaseosa">Gaseosa: C$30</option>
+            <option value="Té de limón">Té de limón: C$40</option>
+            <option value="Jugo de naranja">Jugo de naranja: C$40</option>
+            <option value="Agua embotellada">Agua embotellada: C$40</option>
+        </select>
+        <button onclick="addItem(document.getElementById('bebidas-select').value, 'bebidas')">Agregar Bebida Sin Alcohol</button>
     </div>
 </div>
 
@@ -237,12 +195,36 @@
     <button class="button-danger" onclick="clearDay()">Limpiar el Día</button>
 </div>
 
+<a href="https://api.whatsapp.com/send?phone=50584751878" class="whatsapp-button" target="_blank">Contactar por WhatsApp</a>
+
 <script>
     const mesas = {};
 
-    function addItem(producto, priceId) {
+    function addItem(producto, category) {
         const mesaSelect = document.getElementById("mesa-select");
         const mesa = mesaSelect.value;
+
+        let precio;
+        switch (category) {
+            case 'asado':
+                precio = (producto === 'Costilla de cerdo') ? 300 : (producto === 'Pollo asado') ? 220 : (producto === 'Cerdo asado') ? 220 : (producto === 'Corazón asado') ? 220 : (producto === 'Gonces asados') ? 450 : 470;
+                break;
+            case 'marisco':
+                precio = (producto === 'Camarones a la plancha') ? 370 : (producto === 'Camarones empanizados') ? 370 : (producto === 'Camarones al ajillo') ? 370 : 370;
+                break;
+            case 'pollo':
+                precio = (producto === 'Pollo a la plancha') ? 350 : (producto === 'Pollo al vino') ? 350 : (producto === 'Pollo jalapeño') ? 350 : 400;
+                break;
+            case 'extras':
+                precio = (producto === 'Arroz o gallo pinto') ? 50 : (producto === 'Papas') ? 200 : (producto === 'Ensalada') ? 40 : (producto === 'Tostones') ? 50 : (producto === 'Jalapeño') ? 40 : 50;
+                break;
+            case 'bebidas':
+                precio = (producto === 'Limonada') ? 40 : (producto === 'Gaseosa') ? 30 : (producto === 'Té de limón') ? 40 : (producto === 'Jugo de naranja') ? 40 : 40;
+                break;
+            default:
+                precio = 0; // Para cervezas y licores, no se define precio por ahora
+                break;
+        }
 
         if (!mesa) {
             alert("Por favor, selecciona una mesa.");
@@ -253,7 +235,6 @@
             mesas[mesa] = [];
         }
 
-        const precio = parseFloat(document.getElementById(priceId).textContent);
         mesas[mesa].push({ producto, precio });
         displayMesa();
         localStorage.setItem('mesas', JSON.stringify(mesas));
